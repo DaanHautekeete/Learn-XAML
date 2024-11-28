@@ -2,23 +2,28 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void BtnSubmit_Pressed(object sender, EventArgs e)
         {
-            count++;
+            string strName = "";
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
+
+            if (txtName.Text != string.Empty)
+            {
+                strName = txtName.Text;
+                BtnSubmit.Text = strName;
+            }
             else
-                CounterBtn.Text = $"Clicked {count} times";
+            {
+                BtnSubmit.Text = "Confirm name!";
+                Application.Current.MainPage.DisplayAlert("Error", "Please enter a name", "ok");
+            }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }
 
